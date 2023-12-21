@@ -27,8 +27,7 @@ exports.addNewProduct = async (req, res) => {
       mimetype: file.mimetype,
       buffer: file.buffer,
     }));
-    console.log(title, description, category, price, images);
-
+    
     // Upload each file to Firebase Storage
     const uploadedImages = [];
     for (const file of images) {
@@ -37,8 +36,9 @@ exports.addNewProduct = async (req, res) => {
       const snapshot = await uploadBytesResumable(storageRef, file.buffer, metadata);
       const downloadURL = await getDownloadURL(snapshot.ref);
       console.log(downloadURL);
-      uploadedImages.push({ originalname: file.originalname, downloadURL});
+      uploadedImages.push({ originalname: file.originalname, downloadURL: downloadURL});
     }
+    console.log(uploadedImages);
 
     // Create a new product with the uploaded images
     const newProduct = new Product({
