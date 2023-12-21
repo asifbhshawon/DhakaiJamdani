@@ -1,0 +1,6 @@
+/* Hide the tracker images */
+.hero-img {
+    min-width: 300px;
+    width: 75%;
+}
+  

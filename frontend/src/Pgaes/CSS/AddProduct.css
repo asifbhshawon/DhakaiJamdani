@@ -1,0 +1,11 @@
+.bodyContain {
+    /* width: auto; */
+    /* background: aqua; */
+    /* margin: auto; */
+    margin-top: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
