@@ -1,5 +1,5 @@
 const express = require("express");
-const multer = require('multer');
+const multer = require("multer");
 
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -7,15 +7,17 @@ const multer = require('multer');
 //     },
 //     filename: function (req, file, cb) {
 //       const uniqueSuffix = Date.now() + '-' + file.originalname;
-//       cb(null, file.fieldname + '-' + uniqueSuffix);
+//       cb(null, file.fieldname + '-' + unique Suffix);
 //     }
 //   })
 
-const upload = multer({storage: multer.memoryStorage()});
+const upload = multer({ storage: multer.memoryStorage() });
 const productController = require("../Controller/productController");
 
 const router = express.Router();
 
-router.post("/",upload.array("images", 12),productController.addNewProduct);
+router
+  .post("/", upload.array("images", 12), productController.addNewProduct)
+  .get("/", productController.getAllproducts);
 
 exports.router = router;

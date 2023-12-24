@@ -4,7 +4,7 @@ import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
 
 const CartItems = () => {
-  const { all_product, cartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
+  const { allProducts, cartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
 
   return (
     <div className="cartitems">
@@ -17,19 +17,19 @@ const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {all_product.map((e) => {
-        if (cartItems[e.id] > 0) {
+      {allProducts.map((e) => {
+        if (cartItems[e._id] > 0) {
           return <div>
             <div className="cartitems-format cartitems-format-main">
-              <img src={e.image} alt="" className="carticon-product-icon" />
-              <p>{e.name}</p>
-              <p>${e.new_price}</p>
-              <button className="cartitems-quantity">{cartItems[e.id]}</button>
-              <p>${e.new_price*cartItems[e.id]}</p>
+              <img src={e.images[0].downloadURL} alt="" className="carticon-product-icon" />
+              <p>{e.title}</p>
+              <p>${e.price}</p>
+              <button className="cartitems-quantity">{cartItems[e._id]}</button>
+              <p>${e.price*cartItems[e._id]}</p>
               <img
                 src={remove_icon}
                 onClick={() => {
-                  removeFromCart(e.id);
+                  removeFromCart(e._id);
                 }}
                 alt=""
               />

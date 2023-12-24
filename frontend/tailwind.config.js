@@ -1,10 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import keepPreset from "keep-react/preset";
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "node_modules/keep-react/**/*.{js,jsx,ts,tsx}"
   ],
-  theme: {
-    extend: {},
-  },
-  plugins: [require("@tailwindcss/forms")],
+  presets: [keepPreset],
 };

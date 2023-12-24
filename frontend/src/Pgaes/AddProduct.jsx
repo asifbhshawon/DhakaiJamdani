@@ -1,14 +1,21 @@
 import { useState } from "react";
 import "./CSS/AddProduct.css";
 import axios from "axios";
+import { Modal, Button } from "keep-react";
+import {CheckCircle} from "phosphor-react";
 // axios.defaults.baseURL = 'http://localhost:8080';
 
 // import { PhotoIcon } from "@heroicons/react/24/solid";
 
 export default function Example() {
+  const [showModal, setShowModal] = useState(false);
+  const onClickModal =()=>{
+    setShowModal(!showModal);
+  }
   const [product, setProduct] = useState({
     title: "",
     description: "",
+    inStock: true,
     category: "Sharee",
     price: "",
   });
@@ -26,18 +33,18 @@ export default function Example() {
     const newFiles = Array.from(event.target.files);
     const validImageTypes = ["image/jpeg", "image/png"];
     const invalidFiles = [];
-  
+
     // Validate each selected file
     for (let i = 0; i < newFiles.length; i++) {
       const fileType = newFiles[i]["type"];
-  
+
       if (validImageTypes.includes(fileType)) {
         setImages((prevImages) => [...prevImages, newFiles[i]]);
       } else {
         invalidFiles.push(newFiles[i]);
       }
     }
-  
+
     if (invalidFiles.length > 0) {
       alert("Only images (gif, jpeg, png) are accepted.");
     }
@@ -67,7 +74,7 @@ export default function Example() {
     images.forEach((file, index) => {
       formData.append("images", file);
     });
-    
+
     // formData.append("images", images[0]);
     // formData.append("images", images[1]);
 
@@ -78,7 +85,9 @@ export default function Example() {
           "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
         },
       });
-      console.log(res.status);
+      if (res.status === 201) {
+        setShowModal(true);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -92,6 +101,7 @@ export default function Example() {
       // ...prevProduct,
       title: "",
       description: "",
+      inStock: true,
       category: "Sharee",
       price: "",
       images: [],
@@ -103,6 +113,15 @@ export default function Example() {
 
   return (
     <div className="bodyContain">
+      <Modal size="md" show={showModal} icon=<CheckCircle size={32} points="center"/>>
+        <Modal.Header>Product saved successfully</Modal.Header>
+        <Modal.Footer>
+        <Button type="primary" onClick={onClickModal}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <h2 className="text-center font-extrabold leading-10 text-black">
         Add a product
       </h2>
@@ -128,6 +147,7 @@ export default function Example() {
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       placeholder="khaki jamdani"
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                 </div>
@@ -148,6 +168,7 @@ export default function Example() {
                     value={product.description}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     onChange={handleInputChange}
+                    required
                   />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -210,6 +231,7 @@ export default function Example() {
                         // value={product.images}
                         multiple="multiple"
                         name="files"
+                        required
                       />
                     </label>
                   </div>
@@ -252,6 +274,7 @@ export default function Example() {
                   autoComplete="price"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={handleInputChange}
+                  required
                 />
               </div>
             </div>

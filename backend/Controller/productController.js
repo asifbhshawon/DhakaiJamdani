@@ -57,3 +57,14 @@ exports.addNewProduct = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+exports.getAllproducts = async (req, res) => {
+  try {
+    const items = await Product.find();
+    res.json(items);
+  }
+  catch(error) {
+    console.error();
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

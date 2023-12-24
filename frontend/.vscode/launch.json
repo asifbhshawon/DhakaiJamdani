@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "d:/Friends/Fardin_SFU/PracticeQuiz4",
-      "program": "d:/Friends/Fardin_SFU/PracticeQuiz4/build/Debug/outDebug",
+      "externalConsole": false,
+      "cwd": "/media/gump/Shawon/Dhakaia_Jamdani/site/DhakaiJamdani/frontend",
+      "program": "/media/gump/Shawon/Dhakaia_Jamdani/site/DhakaiJamdani/frontend/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -18,7 +18,6 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-      {/* <AuthProvider> */}
         <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />
@@ -37,7 +36,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
-        {/* </AuthProvider> */}
       </BrowserRouter>
     </div>
   );
