@@ -3,7 +3,7 @@
 Here we uploaded our images to firebase perfectly but one error is that we couldn't take the `DownloadUrl` in our backend
 
 // Important 
-```
+```js
 const express = require("express");
 const multer = require('multer');
 
