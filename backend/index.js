@@ -19,7 +19,6 @@ try {
 async function main() {
     const db = await mongoose.connect(process.env.MONGO_URL);
   
-    // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
     console.log("database connected");
 }
 

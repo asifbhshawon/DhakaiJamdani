@@ -28,16 +28,16 @@ const Navbar = () => {
         </li>
         <li
           onClick={() => {
-            setMenu("sharee");
+            setMenu("Sharee");
           }}
         >
           <Link
             style={{ textDecoration: "none", color: "#626262" }}
-            to="/sharee"
+            to="/Sharee"
           >
             Sharee
           </Link>{" "}
-          {menu === "sharee" ? <hr /> : <></>}
+          {menu === "Sharee" ? <hr /> : <></>}
         </li>
         <li
           onClick={() => {

@@ -11,7 +11,7 @@ const Popular = () => {
       <h1>Popular in Sharee</h1>
       <hr />
       <div className="popular-item">
-        {allProducts.map((item, i) => {
+        {allProducts.slice(0,4).map((item, i) => {
           return (
             <Item
               key={i}

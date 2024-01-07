@@ -1,17 +1,18 @@
 import { useState } from "react";
 import "./CSS/AddProduct.css";
 import axios from "axios";
-import { Modal, Button } from "keep-react";
-import {CheckCircle} from "phosphor-react";
+import { Modal, Button, Spinner } from "keep-react";
+import { CheckCircle } from "phosphor-react";
 // axios.defaults.baseURL = 'http://localhost:8080';
 
 // import { PhotoIcon } from "@heroicons/react/24/solid";
 
 export default function Example() {
   const [showModal, setShowModal] = useState(false);
-  const onClickModal =()=>{
+  const [loading, setLoading] = useState(false);
+  const onClickModal = () => {
     setShowModal(!showModal);
-  }
+  };
   const [product, setProduct] = useState({
     title: "",
     description: "",
@@ -56,6 +57,7 @@ export default function Example() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     // Now 'product' state contains all input values
     // console.log(product);
@@ -87,6 +89,7 @@ export default function Example() {
       });
       if (res.status === 201) {
         setShowModal(true);
+        setLoading(false);
       }
     } catch (err) {
       console.error(err);
@@ -113,13 +116,25 @@ export default function Example() {
 
   return (
     <div className="bodyContain">
-      <Modal size="md" show={showModal} icon=<CheckCircle size={32} points="center"/>>
+      {/* Modals */}
+      <Modal
+        size="md"
+        show={showModal}
+        icon=<CheckCircle size={32} points="center" />
+      >
         <Modal.Header>Product saved successfully</Modal.Header>
         <Modal.Footer>
-        <Button type="primary" onClick={onClickModal}>
+          <Button type="primary" onClick={onClickModal}>
             Ok
           </Button>
         </Modal.Footer>
+      </Modal>
+
+      <Modal size="md" show={loading}>
+        <Modal.Header>
+          <Spinner color="info" size="lg" />
+          {"   "}Uploading...
+        </Modal.Header>
       </Modal>
 
       <h2 className="text-center font-extrabold leading-10 text-black">
@@ -221,7 +236,7 @@ export default function Example() {
                           />
                         </svg>
                         <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                          Select a photo
+                          Select photos
                         </p>
                       </div>
                       <input
