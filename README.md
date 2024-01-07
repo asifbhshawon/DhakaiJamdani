@@ -1,6 +1,6 @@
 # DhakaiJamdani
 
->> ***Added Admin Dashboard***
+***Added Admin Dashboard***
     > Added Add product page
     > Added Products page to see all products in a table
     > Added search system to search products
