@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CircularProgress from '@mui/material/CircularProgress';
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
+import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 
 import axios from "axios";
 
@@ -86,8 +87,8 @@ const AddProductForm = () => {
       formData.append("images", file);
     });
 
-    formData.append("images", images[0]);
-    formData.append("images", images[1]);
+    // formData.append("images", images[0]);
+    // formData.append("images", images[1]);
 
     try {
       // Send the FormData object to your backend
@@ -273,17 +274,14 @@ const AddProductForm = () => {
                   {images.map((file, key) => {
                     return (
                       <div key={key} className="overflow-hidden relative">
-                        <i
-                          onClick={() => {
-                            removeImage(file.name);
-                          }}
-                          className="mdi mdi-close absolute right-1 hover:text-white cursor-pointer"
-                        ></i>
                         <img
                           className="h-20 w-20 rounded-md"
                           src={URL.createObjectURL(file)}
                           alt={`${key + 1}`}
                         />
+                        <DeleteForeverSharpIcon className="absolute right-1 top-1 text-white hover:text-black cursor-pointer" onClick={() => {
+                            removeImage(file.name);
+                          }}/>
                       </div>
                     );
                   })}

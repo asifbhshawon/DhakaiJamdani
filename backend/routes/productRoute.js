@@ -18,6 +18,7 @@ const router = express.Router();
 
 router
   .post("/", upload.array("images", 12), productController.addNewProduct)
-  .get("/", productController.getAllproducts);
+  .get("/", productController.getAllproducts)
+  .patch("/:id", upload.array("images", 12), productController.updateProduct);
 
 exports.router = router;
